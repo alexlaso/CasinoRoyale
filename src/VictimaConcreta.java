@@ -40,6 +40,9 @@ public class VictimaConcreta implements Runnable {
         if (saldo<=0){
             System.out.println("El jugador "+i+" se ha ido a sacar más dinero");
             apostacion.contadorJugadores--;
+            if (apostacion.contadorJugadores<1){
+                Apostacion.finalizarPerdida();
+            }
         }
         }
 

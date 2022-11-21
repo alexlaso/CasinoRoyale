@@ -47,6 +47,10 @@ public class VictimaFibonacci implements Runnable {
         if (saldo<=0){
             System.out.println("El jugador "+i+" se ha ido a sacar más dinero");
             apostacion.contadorJugadores--;
+            System.out.println("Quedan "+apostacion.contadorJugadores+" jugadores");
+            if (apostacion.contadorJugadores<1){
+                Apostacion.finalizarPerdida();
+            }
         }
     }
 

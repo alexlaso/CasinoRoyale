@@ -21,10 +21,12 @@ public class Apostacion {
 
 
     public synchronized void addApuesta(int apuesta, int i) throws InterruptedException {
+        if (contadorJugadores<2){
+            finalizarPerdida();
+        }
         while (!apuestaAbierta && quienHaApostado[i]) {
             wait();
         }
-        //
         try {
             total += apuesta;
             isAllTrue(quienHaApostado);
@@ -38,18 +40,15 @@ public class Apostacion {
         }
     }
 
-    public synchronized int repartirApuesta() throws InterruptedException {
+    public synchronized void repartirApuesta() throws InterruptedException {
+        if (contadorJugadores<2){
+            finalizarPerdida();
+        }
         while (apuestaAbierta) {
             System.out.println("\nSe aceptan apuestas\n");
-            if (contadorJugadores<1){
-                finalizarPerdida();
-            }
             wait();}
         if (!apuestaAbierta&&contadorJugadores>0){
         try{
-            /*for (int i=0;i<contadorJugadores;i++){
-                System.out.println("El jugador " + i+" ha apostado: "+ quienHaApostado[i]);
-            }*/
             numeroGanador = (int) (Math.random()*36);
             System.out.println("El numero ganador es: "+ numeroGanador);
         for (int i=0;i< quienHaApostado.length;i++){
@@ -68,8 +67,7 @@ public class Apostacion {
             apuestaAbierta = true;
             notifyAll();
         }}
-        return total;
-        }
+    }
 
 
     public static boolean isAllTrue(boolean[] quienHaApostado)
@@ -86,7 +84,7 @@ public class Apostacion {
     }
 
     public static void estoNuncaVaAOcurrir(){
-        System.out.println("GANA UN JUGADOR");
+        System.out.println("\nGANA UN JUGADOR\n");
         System.exit(0);
 
     }

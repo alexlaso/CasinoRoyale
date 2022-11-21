@@ -9,6 +9,9 @@ public class Banca implements Runnable {
 
     @Override
     public void run() {
+        if (apostacion.contadorJugadores<2){
+            Apostacion.finalizarPerdida();
+        }
         while(apostacion.contadorJugadores>0){
             espera();
         try {
@@ -19,7 +22,7 @@ public class Banca implements Runnable {
                 throw new RuntimeException(e);
             }
         if (dineroBanca<1){
-            apostacion.estoNuncaVaAOcurrir();
+            Apostacion.estoNuncaVaAOcurrir();
         }
         }
         }
