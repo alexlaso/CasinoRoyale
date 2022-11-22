@@ -2,7 +2,7 @@ public class Casino {
     public void desplumar(int numJugadores) {
         Apostacion apostacion = new Apostacion(numJugadores);
         for (int i = 0; i < numJugadores; i++) {
-            int nuevojugador = (int) (Math.random() *3);
+            int nuevojugador = (int) ((Math.random() *3)+1);
             switch (nuevojugador) {
                 case 1 -> {
                     new Thread(new VictimaConcreta(apostacion, 1000, i)).start();

@@ -21,7 +21,7 @@ public class Apostacion {
 
 
     public synchronized void addApuesta(int apuesta, int i) throws InterruptedException {
-        if (contadorJugadores<2){
+        if (contadorJugadores<1){
             finalizarPerdida();
         }
         while (!apuestaAbierta && quienHaApostado[i]) {
@@ -41,7 +41,7 @@ public class Apostacion {
     }
 
     public synchronized void repartirApuesta() throws InterruptedException {
-        if (contadorJugadores<2){
+        if (contadorJugadores<1){
             finalizarPerdida();
         }
         while (apuestaAbierta) {

@@ -9,7 +9,7 @@ public class Banca implements Runnable {
 
     @Override
     public void run() {
-        if (apostacion.contadorJugadores<2){
+        if (apostacion.contadorJugadores<1){
             Apostacion.finalizarPerdida();
         }
         while(apostacion.contadorJugadores>0){
